@@ -1,0 +1,422 @@
+echo "# zizzou" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/Utari7/zizzou.git
+git push -u origin master
+
+
+import java.util.Scanner; //this is the scanner resposible for reading input in Java
+import java.util.Random; //this is the random class in Java resposible for random outputs
+
+public class NewClass
+{
+
+	static int SM_current_treasure = 50; //this is the treasure class
+	static int SM_max_treasure = 100; // this is the maximum amount of treasure class
+	static int SM_treasure_booster = 0; // this is the treasure booster class
+	
+	public static void main(String[] args) 
+	{
+	 		Scanner in = new Scanner(System.in);// scanner for user input
+  			Random rand = new Random();// to get random numbers 
+  			 
+			while(true)
+				DarkRoom(in);
+	
+	}
+	
+    static void DarkRoom(Scanner in) //the following are the if and else statemetns for when the user is in the DarkRoom
+	{
+		System.out.println("Welcome Maze Runner......."); // the following is text designed to make the user immersed in the game
+                System.out.println("To the ridiculously hard maze game! ");
+                System.out.println("Beware of witches, traps and tricky questions! ");
+                System.out.println("Your task, should you choose to accept it, is to finish the maze with as much treasure as possible! ");
+                System.out.println("Remember, you have to enter a direction to move, i.e. east! ");
+                System.out.println("Good luck Maze Runner! ");
+                System.out.print("Your Treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("You Have " + SM_treasure_booster + " boosters" );
+		if(SM_treasure_booster>0)
+		{
+			System.out.println("Enter 1 to use a treasure boost, 2 to continue");
+			String booster_val = in.next();
+                    switch (booster_val) {
+                        case "1":
+                            SM_current_treasure = SM_current_treasure + 30;
+                            SM_treasure_booster -= 1;
+                            System.out.print("Your Treasure : " + SM_current_treasure + " : ");
+                            for(int i=1;i<=SM_current_treasure;i++)
+                                System.out.print("*");
+                            System.out.println();
+                            break;
+                        case "2":
+                            System.out.println("Continue with out using booster");
+                            break;
+                        default:
+                            System.out.println("Invalid Operation");
+                            break;
+                    }
+				
+		}
+		System.out.println("you need to open doors and find treasure boosters in order to finish the game with as much treasure as possible");
+		System.out.println("enter direction");		
+		String mov = in.next();
+		if(mov.equals("north") || mov.equals("south") || mov.equals("east") || mov.equals("west")) // these are the directions the user can move in
+		{
+                    switch (mov) {
+                        case "north":
+                            BedRoom(in);
+                            break;
+                        case "south":
+                            Basement(in);
+                            break;
+                        case "east":
+                            EmptyRoom(in);
+                            break;
+                        default:
+                            WitchRoom(in);
+                            break;
+                    }
+		}else
+			System.out.println("Invalid option enter north|south|east|west");
+		
+    }
+	
+    static void BedRoom(Scanner in) //the following are the if and else statemetns for when the user is in the BedRoom
+	{	
+		SM_current_treasure -= 5;
+		System.out.print("Your Treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("You Have " + SM_treasure_booster + " treasure boosters" );
+		if(SM_treasure_booster>0)
+		{
+			System.out.println("Enter 1 to use a booster, 2 to continue");
+			String booster_val = in.next();
+                    switch (booster_val) {
+                        case "1":
+                            SM_current_treasure = SM_current_treasure + 30;
+                            SM_treasure_booster -= 1;
+                            System.out.print("Your Treasure : " + SM_current_treasure + " : ");
+                            for(int i=1;i<=SM_current_treasure;i++)
+                                System.out.print("*");
+                            System.out.println();
+                            break;
+                        case "2":
+                            System.out.println("Continue without using booster");
+                            break;
+                        default:
+                            System.out.println("Invalid Operation");
+                            break;
+                    }
+				
+		}
+		System.out.println("wizard appear" );
+		System.out.println("If question answered correctly gain treasure"); 
+		System.out.println( " Is this game amazing");
+		String answer = in.next();
+		if (answer.equals("Yes"))
+    		{
+			if(SM_current_treasure != 100)
+      				SM_current_treasure -= 20;
+    		}else{
+			SM_current_treasure += 20;
+		}
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		
+		System.out.println();
+		System.out.println("enter direction");
+		String mov = in.next();
+		if(mov.equals("north") || mov.equals("south") || mov.equals("east") || mov.equals("west"))
+		{
+		if(mov.equals("east"))
+			TrapRoom(in);
+		else
+			DarkRoom(in);
+		}else
+			System.out.println("Invalid option enter north|south|east|west");
+		
+     }
+	
+	static void WitchRoom(Scanner in) //the following are the if and else statemetns for when the user is in the WitchRoom
+	{
+		SM_current_treasure -= 5;
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("You Have " + SM_treasure_booster + " treasure booster" );
+		if(SM_treasure_booster>0)
+		{
+			System.out.println("Enter 1 to use a booster, 2 to continue");
+			String booster_val = in.next();
+                    switch (booster_val) {
+                        case "1":
+                            SM_current_treasure = SM_current_treasure + 30;
+                            SM_treasure_booster -= 1;
+                            System.out.print("Your treasure : " + SM_current_treasure + " : ");
+                            for(int i=1;i<=SM_current_treasure;i++)
+                                System.out.print("*");
+                            System.out.println();
+                            break;
+                        case "2":
+                            System.out.println("Continue with out using booster");
+                            break;
+                        default:
+                            System.out.println("Invalid Operation");
+                            break;
+                    }
+				
+		}
+		System.out.println("A witch appears");
+		System.out.println("If question answered correctly gain treasure");
+		System.out.println("Is the witch fake ?");
+		String answer = in.next();
+		if (answer.equals("Yes"))
+		{
+			if(SM_current_treasure != 100) 
+      				SM_current_treasure += 10;
+			
+		}else{
+			SM_current_treasure -= 10;
+		}
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("enter direction");
+		String mov = in.next();
+		if(mov.equals("north") || mov.equals("south") || mov.equals("east") || mov.equals("west"))
+		{
+		if(mov.equals("east"))
+			DarkRoom(in);
+		else
+			BathRoom(in);
+		}else
+			System.out.println("Invalid option enter north|south|east|west");
+
+	}
+
+	static void BathRoom(Scanner in) //the following are the if and else statemetns for when the user is in the BathRoom
+	{
+		SM_current_treasure -= 5;
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("You Have " + SM_treasure_booster + " treasure booster" );
+		if(SM_treasure_booster>0)
+		{
+			System.out.println("Enter 1 to use a booster, 2 to continue");
+			String booster_val = in.next();
+                    switch (booster_val) {
+                        case "1":
+                            SM_current_treasure = SM_current_treasure + 30;
+                            SM_treasure_booster -= 1;
+                            System.out.print("Your treasure : " + SM_current_treasure + " : ");
+                            System.out.println();
+                            break;
+                        case "2":
+                            System.out.println("Continue with out using booster");
+                            break;
+                        default:
+                            System.out.println("Invalid Operation");
+                            break;
+                    }
+				
+		}
+		System.out.println("A haunt appeared");
+		System.out.println("If question answered correctly,you will gain treasure! ");
+		System.out.println("How many rooms are in this house ");
+		String answer = in.next();
+		if (answer.equals("7"))
+		{
+			if(SM_current_treasure != 100)
+      				SM_current_treasure += 20;
+			
+		}else{
+			SM_current_treasure -= 20;
+		}
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("enter direction");
+		String mov = in.next();
+		if(mov.equals("north") || mov.equals("south") || mov.equals("east") || mov.equals("west"))
+		{
+		if(mov.equals("north"))
+			WitchRoom(in);
+		else
+			Basement(in);
+		}else
+			System.out.println("Invalid option enter north|south|east|west");
+	}
+	
+	static void Basement(Scanner in) //the following are the if and else statemetns for when the user is in the Basement
+	{
+		SM_current_treasure -= 5;
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("You Have " + SM_treasure_booster + " treasure boosters" );
+		if(SM_treasure_booster>0)
+		{
+			System.out.println("Enter 1 to use a booster, 2 to continue");
+			String booster_val = in.next();
+                    switch (booster_val) {
+                        case "1":
+                            SM_current_treasure = SM_current_treasure + 30;
+                            SM_treasure_booster -= 1;
+                            System.out.print("Your treasure : " + SM_current_treasure + " : ");
+                            System.out.println();
+                            break;
+                        case "2":
+                            System.out.println("Continue with out using booster");
+                            break;
+                        default:
+                            System.out.println("Invalid Operation");
+                            break;
+                    }
+				
+		}
+		System.out.println("Answer this question to gain treasure, answer is either Yes or No");
+		System.out.println("Do you remember your past ");
+		String answer = in. next();
+		if (answer.equals("Yes"))
+		{
+			if(SM_current_treasure != 100)
+      				SM_current_treasure += 10;
+		}else{
+			SM_current_treasure -= 10;
+		}
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("enter direction");
+		String mov = in.next();
+		if(mov.equals("north") || mov.equals("south") || mov.equals("east") || mov.equals("west"))
+		{
+                    switch (mov) {
+                        case "north":
+                            DarkRoom(in);
+                            break;
+                        case "east":
+                            ExitRoom(in);
+                            break;
+                        default:
+                            BathRoom(in);
+                            break;
+                    }
+		}else
+			System.out.println("Invalid option enter north|south|east|west");
+	}
+
+	static void TrapRoom(Scanner in) //the following are the if and else statemetns for when the user is in the TrapRoom
+	{
+		SM_current_treasure -= 5;
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("You Have " + SM_treasure_booster + " treasure booster" );
+		if(SM_treasure_booster>0)
+		{
+			System.out.println("Enter 1 to use a booster, 2 to continue");
+			String booster_val = in.next();
+                    switch (booster_val) {
+                        case "1":
+                            SM_current_treasure = SM_current_treasure + 30;
+                            SM_treasure_booster -= 1;
+                            System.out.print("Your treasure : " + SM_current_treasure + " : ");
+                            System.out.println();
+                            break;
+                        case "2":
+                            System.out.println("Continue with out using booster");
+                            break;
+                        default:
+                            System.out.println("Invalid Operation");
+                            break;
+                    }
+				
+		}
+		System.out.println("You are attacked by a mysterious creature");
+		if(SM_current_treasure <= 50)
+		{
+			System.out.println("GAME OVER");
+			System.exit(0);
+		}
+		else
+		{
+			
+			SM_current_treasure -= 50;
+		}		
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("enter direction");
+		String mov = in.next();
+		if(mov.equals("north") || mov.equals("south") || mov.equals("east") || mov.equals("west"))
+		{
+		if(mov.equals("left"))
+			BedRoom(in);
+		else
+			EmptyRoom(in);
+		}else
+			System.out.println("Invalid option enter north|south|east|west");
+	}
+	
+	static void EmptyRoom(Scanner in) //the following are the if and else statemetns for when the user is in the EmptyRoom
+	{
+		SM_current_treasure -= 5;
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("You Have " + SM_treasure_booster + " treasure booster" );
+		if(SM_treasure_booster>0)
+		{
+			System.out.println("Enter 1 to use a booster, 2 to continue");
+			String booster_val = in.next();
+                    switch (booster_val) {
+                        case "1":
+                            SM_current_treasure = SM_current_treasure + 30;
+                            SM_treasure_booster -= 1;
+                            System.out.print("Your treasure : " + SM_current_treasure + " : ");
+                            for(int i=1;i<=SM_current_treasure;i++)
+                                System.out.print("*");
+                            System.out.println();
+                            break;
+                        case "2":
+                            System.out.println("Continue with out using booster");
+                            break;
+                        default:
+                            System.out.println("Invalid Operation");
+                            break;
+                    }
+				
+		}
+		System.out.println("This room is empty ");
+		System.out.println("You have found a booster and added to inventory");
+		SM_treasure_booster += 1; 
+		System.out.println("enter direction");
+
+
+		String mov = in.next();
+		if(mov.equals("north") || mov.equals("south") || mov.equals("east") || mov.equals("west"))
+		{
+                    switch (mov) {
+                        case "north":
+                            TrapRoom(in);
+                            break;
+                        case "down":
+                            ExitRoom(in);
+                            break;
+                        default:
+                            DarkRoom(in);
+                            break;
+                    }
+		}else
+			System.out.println("Invalid option enter north|south|east|west");
+	}
+	
+	static void ExitRoom(Scanner in) //These are the statements printed once the user has correctly found the exit room
+	{
+		System.out.print("Your treasure : " + SM_current_treasure + " : ");
+		System.out.println();
+		System.out.println("You have sucessfully found a exit");
+		System.exit(0);
+		
+	}
+	
+
+  
+
+
+
+}
